@@ -3,5 +3,23 @@
 {% block title %}Lieux{% endblock %}
 
 {% block body %}
-    
+
+    <h1>Les lieux</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Ville</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for place in places %}
+            <tr>
+                <td>{{ place.town|raw }}</td>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('place_create') }}" class="btn-create">Créer un lieu</a>
+
+
 {% endblock %}

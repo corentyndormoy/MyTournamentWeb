@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lieux{% endblock %}
+
+{% block body %}
+
+    <h1>Créer un lieu</h1>
+
+    {{ form_start(placeForm) }}
+
+    <button type="submit" class="btn btn-success">
+            Ajouter l'article
+    </button>
+
+    {{ form_end(placeForm) }}
+
+{% endblock %}
