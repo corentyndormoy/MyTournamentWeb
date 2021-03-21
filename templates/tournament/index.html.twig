@@ -9,12 +9,15 @@
         <thead>
             <tr>
                 <th>Noms</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
         {% for tournament in tournaments %}
             <tr>
                 <td>{{ tournament.name|raw }}</td>
+                <td><a href="{{ path('tournament_edit', {'id': tournament.id}) }}" class="btn-primary">Modifier</a></td>
+            </tr>
         {% endfor %}
         </tbody>
     </table>

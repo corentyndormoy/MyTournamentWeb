@@ -25,7 +25,7 @@ class TournamentController extends AbstractController
         ]);
     }
 
-    #[Route('/tournament-create', name: 'tournament_create')]
+    #[Route('/tournament/create', name: 'tournament_create')]
     /**
      * Crée un tournois
      * 
@@ -50,5 +50,30 @@ class TournamentController extends AbstractController
         return $this->render('tournament/create.html.twig', [
             'tournamentForm' => $tournamentForm->createView(),
         ]);
+    }
+
+    #[Route('/tournament/{id}/edit', name: 'tournament_edit')]
+    /**
+     * Modifie un tournois
+     * 
+     * @param Tournament    $tournament
+     * @param Request       $request
+     */
+    public function edit(Tournament $tournament, Request $request): Response
+    {
+        $tournamentForm = $this->createForm(TournamentType::class, $tournament);
+
+        $tournamentForm->handleRequest($request);
+        if($tournamentForm->isSubmitted() && $tournamentForm->isValid()){
+            $manager = $this->getDoctrine()->getManager();
+            $manager->flush();
+    
+            return $this->redirectToRoute('tournament'); //@todo: retourner la page détail du tournois
+        }
+    
+        return $this->render('tournament/create.html.twig', [
+            'tournamentForm' => $tournamentForm->createView(),
+        ]);
+    
     }
 }

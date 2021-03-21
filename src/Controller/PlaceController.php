@@ -28,7 +28,7 @@ class PlaceController extends AbstractController
     }
 
 
-    #[Route('/place-create', name: 'place_create')]
+    #[Route('/place/create', name: 'place_create')]
     /**
      * Crée un lieu
      * 
