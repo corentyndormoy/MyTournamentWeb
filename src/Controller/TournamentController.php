@@ -52,7 +52,7 @@ class TournamentController extends AbstractController
         ]);
     }
 
-    #[Route('/tournament/{id}/edit', name: 'tournament_edit')]
+    #[Route('/tournament/edit/{id}', name: 'tournament_edit')]
     /**
      * Modifie un tournois
      * 
@@ -76,21 +76,38 @@ class TournamentController extends AbstractController
         ]);
     }
 
+    #[Route('/tournament/delete/{id}', name: 'tournament_delete')]
+    /**
+     * Supprime un tournois
+     * 
+     * @param Request                   $request
+     * @param Tournament                $tournament
+     * 
+     * @return Response
+     */
+    public function delete(Request $request, Tournament $tournament): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($tournament);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('tournament');
+    }
+
     #[Route('/tournament/{id}', name: 'tournament_show')]
     /**
      * Affiche les détails du tournois
      * 
-     * @param int $id
-     * @param PostRepository $postRepository
+     * @param Tournament            $tournament
+     * @param TournamentRepository  $tournamentRepository
      * 
      * @return Response
      */
-    public function show(int $id, TournamentRepository $tournamentRepository): Response
+    public function show(Tournament $tournament, TournamentRepository $tournamentRepository): Response
     {
-        $tournament = $tournamentRepository->find($id);  
-
         return $this->render('tournament/show.html.twig', [
             'tournament' => $tournament
         ]);
     }
+
 }
