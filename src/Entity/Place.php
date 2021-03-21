@@ -131,4 +131,12 @@ class Place
 
         return $this;
     }
+
+    /**
+     * Méthode toString. Retourne la ville du lieu.
+     */
+    public function __toString(): string 
+    {
+        return $this->town;
+    }
 }
