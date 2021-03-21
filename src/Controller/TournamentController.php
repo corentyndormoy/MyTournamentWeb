@@ -74,6 +74,23 @@ class TournamentController extends AbstractController
         return $this->render('tournament/create.html.twig', [
             'tournamentForm' => $tournamentForm->createView(),
         ]);
-    
+    }
+
+    #[Route('/tournament/{id}', name: 'tournament_show')]
+    /**
+     * Affiche les détails du tournois
+     * 
+     * @param int $id
+     * @param PostRepository $postRepository
+     * 
+     * @return Response
+     */
+    public function show(int $id, TournamentRepository $tournamentRepository): Response
+    {
+        $tournament = $tournamentRepository->find($id);  
+
+        return $this->render('tournament/show.html.twig', [
+            'tournament' => $tournament
+        ]);
     }
 }

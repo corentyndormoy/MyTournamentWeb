@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ tournament.name }}{% endblock %}
+
+{% block body %}
+<section id="tournament">
+    <h1>{{ tournament.name }}</h1>
+    <div class="tournament-starting-at">
+        {{ tournament.startingAt|date("d/m/Y") }}
+    </div>
+</section>
+
+<a href="{{ path('tournament') }}" class="btn-primary">Retour</a>
+
+{% endblock %}

@@ -10,6 +10,7 @@
             <tr>
                 <th>Noms</th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -17,6 +18,7 @@
             <tr>
                 <td>{{ tournament.name|raw }}</td>
                 <td><a href="{{ path('tournament_edit', {'id': tournament.id}) }}" class="btn-primary">Modifier</a></td>
+                <td><a href="{{ path('tournament_show', {'id': tournament.id}) }}" class="btn-primary">Voir</a></td>
             </tr>
         {% endfor %}
         </tbody>
