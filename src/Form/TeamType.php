@@ -16,12 +16,9 @@ class TeamType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('players', EntityType::class, [
+            ->add('player', EntityType::class, [
                 'label' => 'Joueurs',
                 'class' => User::class,
-                'query_builder' => function (EntityRepository $entityRepository) {
-                    return $entityRepository->createQueryBuilder('u');
-                },
                 'choice_label' => function (User $user) {
                     return $user->getFirstName() . ' ' . $user->getLastName();
                 },

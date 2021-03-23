@@ -9,12 +9,14 @@
         <thead>
             <tr>
                 <th>Noms</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
         {% for team in teams %}
             <tr>
                 <td>{{ team.name|raw }}</td>
+                <td><a href="{{ path('team_show', {'id': team.id}) }}" class="btn-primary">Voir</a></td>
             </tr>
         {% endfor %}
         </tbody>

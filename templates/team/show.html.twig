@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ team.name }}{% endblock %}
+
+{% block body %}
+<section id="team">
+    <h1>{{ team.name }}</h1>
+</section>
+
+<section id="players">
+    {% for player in team.player %}
+        <div class="row">
+            {{ player.firstName }} {{ player.lastName }}
+        </div>
+    {% endfor %}
+</section>
+
+<a href="{{ path('team') }}" class="btn-primary">Retour</a>
+
+{% endblock %}

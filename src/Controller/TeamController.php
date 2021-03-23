@@ -53,4 +53,19 @@ class TeamController extends AbstractController
             'teamForm' => $teamForm->createView(),
         ]);
     }
+
+    #[Route('/team/{id}', name: 'team_show')]
+    /**
+     * Affiche les détails de l'équipe
+     * 
+     * @param Team $team
+     * 
+     * @return Response
+     */
+    public function show(Team $team): Response
+    {
+        return $this->render('team/show.html.twig', [
+            'team' => $team
+        ]);
+    }
 }
