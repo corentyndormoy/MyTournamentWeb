@@ -44,9 +44,15 @@ class Place
      */
     private $tournaments;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Field::class, mappedBy="place", orphanRemoval=true)
+     */
+    private $fields;
+
     public function __construct()
     {
         $this->tournaments = new ArrayCollection();
+        $this->fields = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -138,5 +144,35 @@ class Place
     public function __toString(): string 
     {
         return $this->town;
+    }
+
+    /**
+     * @return Collection|Field[]
+     */
+    public function getFields(): Collection
+    {
+        return $this->fields;
+    }
+
+    public function addField(Field $field): self
+    {
+        if (!$this->fields->contains($field)) {
+            $this->fields[] = $field;
+            $field->setPlace($this);
+        }
+
+        return $this;
+    }
+
+    public function removeField(Field $field): self
+    {
+        if ($this->fields->removeElement($field)) {
+            // set the owning side to null (unless already changed)
+            if ($field->getPlace() === $this) {
+                $field->setPlace(null);
+            }
+        }
+
+        return $this;
     }
 }

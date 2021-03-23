@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Terrain{% endblock %}
+
+{% block body %}
+
+    <h1>Créer un terrain</h1>
+
+    {{ form_start(fieldForm) }}
+
+    <button type="submit" class="btn btn-success">
+            Enregistrer le terrain
+    </button>
+
+    {{ form_end(fieldForm) }}
+
+{% endblock %}

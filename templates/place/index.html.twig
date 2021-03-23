@@ -9,12 +9,14 @@
         <thead>
             <tr>
                 <th>Ville</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
         {% for place in places %}
             <tr>
                 <td>{{ place.town|raw }}</td>
+                <td><a href="{{ path('place_add_field', {'id': place.id}) }}" class="btn-primary">Ajouter un terrain</a></td>
             </tr>
         {% endfor %}
         </tbody>

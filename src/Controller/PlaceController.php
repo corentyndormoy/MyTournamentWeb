@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Place;
+use App\Entity\Field;
 use App\Form\PlaceType;
+use App\Form\FieldType;
 use App\Repository\PlaceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,6 +54,36 @@ class PlaceController extends AbstractController
 
         return $this->render('place/create.html.twig', [
             'placeForm' => $placeForm->createView(),
+        ]);
+    }
+
+    #[Route('/place/add-field/{id}', name: 'place_add_field')]
+    /**
+     * Crée un terrain pour un lieu
+     * 
+     * @param Place     $place
+     * @param Request   $request
+     * 
+     * @return Response
+     */
+    public function addField(Place $place, Request $request): Response
+    {
+        $field = new Field();
+        $fieldForm = $this->createForm(FieldType::class, $field);
+
+        $fieldForm->handleRequest($request);
+        if($fieldForm->isSubmitted() && $fieldForm->isValid()){
+            $field->setPlace($place);
+
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($field);
+            $manager->flush();
+    
+            return $this->redirectToRoute('place');
+        }
+
+        return $this->render('field/create.html.twig', [
+            'fieldForm' => $fieldForm->createView(),
         ]);
     }
 }
