@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateurs{% endblock %}
+
+{% block body %}
+
+    <h1>Les utilisateurs</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Noms</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.firstName|raw }}</td>
+                <td><a href="{{ path('tournament_edit', {'id': user.id}) }}" class="btn-primary">Modifier</a></td>
+                <td><a href="{{ path('tournament_show', {'id': user.id}) }}" class="btn-primary">Voir</a></td>
+                <td><a href="{{ path('tournament_delete', {'id': user.id}) }}" class="btn-primary">Supprimer</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('user_create') }}" class="btn-create">Créer un utilisateur</a>
+
+{% endblock %}

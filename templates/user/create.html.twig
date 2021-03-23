@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateur{% endblock %}
+
+{% block body %}
+
+    <h1>Créer un utilisateur</h1>
+
+    {{ form_start(userForm) }}
+
+    <button type="submit" class="btn btn-success">
+            Enregistrer l'utilisateur
+    </button>
+
+    {{ form_end(userForm) }}
+
+{% endblock %}
