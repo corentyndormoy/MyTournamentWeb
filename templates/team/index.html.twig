@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Utilisateurs{% endblock %}
+{% block title %}Equipes{% endblock %}
 
 {% block body %}
 
-    <h1>Les utilisateurs</h1>
+    <h1>Les équipes</h1>
     <table>
         <thead>
             <tr>
@@ -12,14 +12,15 @@
             </tr>
         </thead>
         <tbody>
-        {% for user in users %}
+        {% for team in teams %}
             <tr>
-                <td>{{ user.firstName|raw }}</td>
+                <td>{{ team.name|raw }}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('user_create') }}" class="btn-create">Créer un utilisateur</a>
+    <a href="{{ path('team_create') }}" class="btn-create">Créer une équipe</a>
+
 
 {% endblock %}
