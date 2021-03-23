@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ place.town }}{% endblock %}
+
+{% block body %}
+<section id="place">
+    <h1>{{ place.town }}</h1>
+    <div class="tournament-starting-at">
+        {{ place.postcode }}
+        {{ place.street }}
+        {{ place.country }}
+    </div>
+</section>
+
+<section id="fields">
+    {% for field in place.fields %}
+        <div class="row">
+            {{ field.name }}
+        </div>
+    {% endfor %}
+</section>
+
+<a href="{{ path('place') }}" class="btn-primary">Retour</a>
+
+{% endblock %}

@@ -86,4 +86,19 @@ class PlaceController extends AbstractController
             'fieldForm' => $fieldForm->createView(),
         ]);
     }
+
+    #[Route('/place/{id}', name: 'place_show')]
+    /**
+     * Affiche les détails du lieu
+     * 
+     * @param Place $place
+     * 
+     * @return Response
+     */
+    public function show(Place $place): Response
+    {
+        return $this->render('place/show.html.twig', [
+            'place' => $place
+        ]);
+    }
 }

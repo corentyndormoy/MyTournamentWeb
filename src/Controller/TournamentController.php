@@ -99,11 +99,10 @@ class TournamentController extends AbstractController
      * Affiche les détails du tournois
      * 
      * @param Tournament            $tournament
-     * @param TournamentRepository  $tournamentRepository
      * 
      * @return Response
      */
-    public function show(Tournament $tournament, TournamentRepository $tournamentRepository): Response
+    public function show(Tournament $tournament): Response
     {
         return $this->render('tournament/show.html.twig', [
             'tournament' => $tournament
