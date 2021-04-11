@@ -4,16 +4,22 @@
 
 {% block body %}
 
-    <h1>Créer une équipe</h1>
+    <div class="col-xl-12 col-md-8">
+        <div class="card card-default card-shadow">
+            <div class="card-header">
+                <div class="card-title">
+                    <h2>Créer une équipe</h2>
+                </div>
+            </div>
+            <div class="card-body">
+                {{ form_start(teamForm) }}
+                {{ form_row(teamForm.name) }}
+                {{ form_row(teamForm.player) }}
+                {{ form_end(teamForm) }}
+            </div>
+        </div>
+    </div>
 
-    {{ form_start(teamForm) }}
-    {{ form_row(teamForm.name) }}
-    {{ form_row(teamForm.player) }}
-
-    <button type="submit" class="btn btn-success">
-            Enregistrer l'équipe
-    </button>
-
-    {{ form_end(teamForm) }}
+    <a href="{{ path('team') }}" class="link-primary">Retour</a>
 
 {% endblock %}

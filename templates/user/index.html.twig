@@ -4,22 +4,40 @@
 
 {% block body %}
 
-    <h1>Les utilisateurs</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Noms</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.firstName|raw }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    {% embed '_includes/actionbar.html.twig' %}
+        {% block actionbar %}
+            <a href="{{ path('user_create') }}" class="link-create">Créer un utilisateur</a>
+        {% endblock actionbar %}
+    {% endembed %}
 
-    <a href="{{ path('user_create') }}" class="btn-create">Créer un utilisateur</a>
+    <div class="row">
+        <div class="col-xl-12 col-md-8">
+            <div class="card card-default card-shadow">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h2>Les utilisateurs</h2>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Noms</th>
+                                <th>Prenoms</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for user in users %}
+                            <tr>
+                                <td>{{ user.firstName|raw }}</td>
+                                <td>{{ user.lastName|raw }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

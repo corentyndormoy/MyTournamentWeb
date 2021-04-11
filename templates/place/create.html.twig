@@ -4,14 +4,20 @@
 
 {% block body %}
 
-    <h1>Créer un lieu</h1>
+    <div class="col-xl-12 col-md-8">
+        <div class="card card-default card-shadow">
+            <div class="card-header">
+                <div class="card-title">
+                    <h2>Créer un lieu</h2>
+                </div>
+            </div>
+            <div class="card-body">
+                {{ form_start(placeForm) }}
+                {{ form_end(placeForm) }}
+            </div>
+        </div>
+    </div>
 
-    {{ form_start(placeForm) }}
-
-    <button type="submit" class="btn btn-success">
-            Ajouter l'article
-    </button>
-
-    {{ form_end(placeForm) }}
+    <a href="{{ path('place') }}" class="link-primary">Retour</a>
 
 {% endblock %}

@@ -3,18 +3,27 @@
 {% block title %}{{ team.name }}{% endblock %}
 
 {% block body %}
-<section id="team">
-    <h1>{{ team.name }}</h1>
-</section>
 
-<section id="players">
-    {% for player in team.player %}
-        <div class="row">
-            {{ player.firstName }} {{ player.lastName }}
+    <div class="col-xl-12 col-md-8">
+        <div class="card card-default card-shadow">
+            <div class="card-header">
+                <div class="card-title">
+                    <h2>{{ team.name }}</h2>
+                </div>
+            </div>
+            <div class="card-body">
+                <section id="players">
+                <h3>Liste des joueurs</h3>
+                    {% for player in team.player %}
+                        <ul>
+                            </li>{{ player.firstName }} {{ player.lastName }}</li>
+                        </ul>
+                    {% endfor %}
+                </section>
+            </div>
         </div>
-    {% endfor %}
-</section>
+    </div>
 
-<a href="{{ path('team') }}" class="btn-primary">Retour</a>
+    <a href="{{ path('team') }}" class="link-primary">Retour</a>
 
 {% endblock %}

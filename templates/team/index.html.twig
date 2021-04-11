@@ -4,25 +4,40 @@
 
 {% block body %}
 
-    <h1>Les équipes</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Noms</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for team in teams %}
-            <tr>
-                <td>{{ team.name|raw }}</td>
-                <td><a href="{{ path('team_show', {'id': team.id}) }}" class="btn-primary">Voir</a></td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    {% embed '_includes/actionbar.html.twig' %}
+        {% block actionbar %}
+            <a href="{{ path('team_create') }}" class="link-create">Créer une équipe</a>
+        {% endblock actionbar %}
+    {% endembed %}
 
-    <a href="{{ path('team_create') }}" class="btn-create">Créer une équipe</a>
-
+    <div class="row">
+        <div class="col-xl-12 col-md-8">
+            <div class="card card-default card-shadow">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h2>Les équipes</h2>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Noms</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for team in teams %}
+                            <tr>
+                                <td>{{ team.name|raw }}</td>
+                                <td><a href="{{ path('team_show', {'id': team.id}) }}" class="link-primary">Voir</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

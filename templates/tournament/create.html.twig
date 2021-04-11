@@ -4,14 +4,20 @@
 
 {% block body %}
 
-    <h1>Créer un tournois</h1>
+    <div class="col-xl-12 col-md-8">
+        <div class="card card-default card-shadow">
+            <div class="card-header">
+                <div class="card-title">
+                    <h2>Créer un tournois</h2>
+                </div>
+            </div>
+            <div class="card-body">
+                {{ form_start(tournamentForm) }}
+                {{ form_end(tournamentForm) }}
+            </div>
+        </div>
+    </div>
 
-    {{ form_start(tournamentForm) }}
-
-    <button type="submit" class="btn btn-success">
-            Enregistrer le tournois
-    </button>
-
-    {{ form_end(tournamentForm) }}
+    <a href="{{ path('tournament') }}" class="link-primary">Retour</a>
 
 {% endblock %}
