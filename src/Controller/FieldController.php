@@ -5,14 +5,22 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\FieldRepository;
 
 class FieldController extends AbstractController
 {
     #[Route('/field', name: 'field')]
-    public function index(): Response
+    /**
+     * Affiche la liste des terrains
+     * 
+     * @param FieldRepository $fieldRepository
+     * 
+     * @return Response
+     */
+    public function index(FieldRepository $fieldRepository): Response
     {
         return $this->render('field/index.html.twig', [
-            'controller_name' => 'FieldController',
+            'fields' => $fieldRepository->findAll(),
         ]);
     }
 }

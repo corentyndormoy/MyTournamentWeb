@@ -4,14 +4,20 @@
 
 {% block body %}
 
-    <h1>Créer un terrain</h1>
+    <div class="col-xl-12 col-md-8">
+        <div class="card card-default card-shadow">
+            <div class="card-header">
+                <div class="card-title">
+                    <h2>Créer un terrain</h2>
+                </div>
+            </div>
+            <div class="card-body">
+                {{ form_start(fieldForm) }}
+                {{ form_end(fieldForm) }}
+            </div>
+        </div>
+    </div>
 
-    {{ form_start(fieldForm) }}
-
-    <button type="submit" class="btn btn-success">
-            Enregistrer le terrain
-    </button>
-
-    {{ form_end(fieldForm) }}
+    <a href="{{ path('field') }}" class="link-primary">Retour</a>
 
 {% endblock %}
