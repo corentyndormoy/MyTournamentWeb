@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TournamentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -47,6 +49,16 @@ class Tournament
      * @ORM\JoinColumn(nullable=false)
      */
     private $place;
+
+    /**
+     * @ORM\OneToMany(targetEntity=SportMatch::class, mappedBy="tournament")
+     */
+    private $sportMatches;
+
+    public function __construct()
+    {
+        $this->sportMatches = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -121,6 +133,36 @@ class Tournament
     public function setPlace(?Place $place): self
     {
         $this->place = $place;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SportMatch[]
+     */
+    public function getSportMatches(): Collection
+    {
+        return $this->sportMatches;
+    }
+
+    public function addSportMatch(SportMatch $sportMatch): self
+    {
+        if (!$this->sportMatches->contains($sportMatch)) {
+            $this->sportMatches[] = $sportMatch;
+            $sportMatch->setTournament($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSportMatch(SportMatch $sportMatch): self
+    {
+        if ($this->sportMatches->removeElement($sportMatch)) {
+            // set the owning side to null (unless already changed)
+            if ($sportMatch->getTournament() === $this) {
+                $sportMatch->setTournament(null);
+            }
+        }
 
         return $this;
     }

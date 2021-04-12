@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Matchs{% endblock %}
+
+{% block body %}
+
+    <div class="col-xl-12 col-md-8">
+        <div class="card card-default card-shadow">
+            <div class="card-header">
+                <div class="card-title">
+                    <h2>Créer un match</h2>
+                </div>
+            </div>
+            <div class="card-body">
+                {{ form_start(sportMatchForm) }}
+                {{ form_end(sportMatchForm) }}
+            </div>
+        </div>
+    </div>
+
+    <a href="{{ path('sport_match') }}" class="link-primary">Retour</a>
+
+{% endblock %}

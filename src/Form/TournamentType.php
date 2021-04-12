@@ -50,8 +50,6 @@ class TournamentType extends AbstractType
                     return '(' . $place->getPostcode() . ') ' . $place->getTown() . ' - ' . $place->getStreet() . ', ' . $place->getCountry();
                 },
                 'attr' => ['class' => 'form-control'],
-
-
             ])
 
             ->add('submit', SubmitType::class, [

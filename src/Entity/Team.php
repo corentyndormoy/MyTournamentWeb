@@ -29,9 +29,15 @@ class Team
      */
     private $player;
 
+    /**
+     * @ORM\OneToMany(targetEntity=SportMatch::class, mappedBy="firstTeam")
+     */
+    private $sportMatches;
+
     public function __construct()
     {
         $this->player = new ArrayCollection();
+        $this->sportMatches = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -75,6 +81,36 @@ class Team
             // set the owning side to null (unless already changed)
             if ($player->getTeam() === $this) {
                 $player->setTeam(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SportMatch[]
+     */
+    public function getSportMatches(): Collection
+    {
+        return $this->sportMatches;
+    }
+
+    public function addSportMatch(SportMatch $sportMatch): self
+    {
+        if (!$this->sportMatches->contains($sportMatch)) {
+            $this->sportMatches[] = $sportMatch;
+            $sportMatch->setFirstTeam($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSportMatch(SportMatch $sportMatch): self
+    {
+        if ($this->sportMatches->removeElement($sportMatch)) {
+            // set the owning side to null (unless already changed)
+            if ($sportMatch->getFirstTeam() === $this) {
+                $sportMatch->setFirstTeam(null);
             }
         }
 
