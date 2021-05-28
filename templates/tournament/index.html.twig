@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tournois{% endblock %}
+
+{% block body %}
+    {% embed '_includes/actionbar.html.twig' %}
+        {% block actionbar %}
+            <a href="{{ path('tournament_create') }}" class="link-create">Créer un tournois</a>
+        {% endblock actionbar %}
+    {% endembed %}
+
+    <div class="row">
+        <div class="col-xl-12 col-md-8">
+            <div class="card card-default card-shadow">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h2>Les tournois</h2>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Noms</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for tournament in tournaments %}
+                            <tr>
+                                <td>{{ tournament.name|raw }}</td>
+                                <td><a href="{{ path('tournament_edit', {'id': tournament.id}) }}" class="link-primary">Modifier</a></td>
+                                <td><a href="{{ path('tournament_show', {'id': tournament.id}) }}" class="link-primary">Voir</a></td>
+                                <td><a href="{{ path('tournament_delete', {'id': tournament.id}) }}" class="link-primary">Supprimer</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

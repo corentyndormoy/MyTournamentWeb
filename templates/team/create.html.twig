@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Equipes{% endblock %}
+
+{% block body %}
+
+    <div class="col-xl-12 col-md-8">
+        <div class="card card-default card-shadow">
+            <div class="card-header">
+                <div class="card-title">
+                    <h2>Créer une équipe</h2>
+                </div>
+            </div>
+            <div class="card-body">
+                {{ form_start(teamForm) }}
+                {{ form_end(teamForm) }}
+            </div>
+        </div>
+    </div>
+
+    <a href="{{ path('team') }}" class="link-primary">Retour</a>
+
+{% endblock %}

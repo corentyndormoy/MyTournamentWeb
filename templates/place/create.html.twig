@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lieux{% endblock %}
+
+{% block body %}
+
+    <div class="col-xl-12 col-md-8">
+        <div class="card card-default card-shadow">
+            <div class="card-header">
+                <div class="card-title">
+                    <h2>Créer un lieu</h2>
+                </div>
+            </div>
+            <div class="card-body">
+                {{ form_start(placeForm) }}
+                {{ form_end(placeForm) }}
+            </div>
+        </div>
+    </div>
+
+    <a href="{{ path('place') }}" class="link-primary">Retour</a>
+
+{% endblock %}

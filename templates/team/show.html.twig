@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ team.name }}{% endblock %}
+
+{% block body %}
+
+    <div class="col-xl-12 col-md-8">
+        <div class="card card-default card-shadow">
+            <div class="card-header">
+                <div class="card-title">
+                    <h2>{{ team.name }}</h2>
+                </div>
+            </div>
+            <div class="card-body">
+                <section id="players">
+                <h3>Liste des joueurs</h3>
+                    {% for player in team.player %}
+                        <ul>
+                            </li>{{ player.firstName }} {{ player.lastName }}</li>
+                        </ul>
+                    {% endfor %}
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <a href="{{ path('team') }}" class="link-primary">Retour</a>
+
+{% endblock %}

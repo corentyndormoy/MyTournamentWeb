@@ -7,6 +7,8 @@
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
             {#{{ encore_entry_link_tags('app') }}#}
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+            <link href="{{ asset('css/style.css') }}" rel="stylesheet">
         {% endblock %}
 
         {% block javascripts %}
@@ -14,6 +16,42 @@
         {% endblock %}
     </head>
     <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('field') }}">Terrains</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('place') }}">Lieux</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('team') }}">Equipes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('tournament') }}">Tournois</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('user') }}">Utilisateurs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('sport_match') }}">Matchs</a>
+                </li>
+                {# <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                    <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Separated link</a>
+                    </div>
+                </li> #}
+            </ul>
+        </div>
+    </nav>
+
         {% block body %}{% endblock %}
     </body>
 </html>
