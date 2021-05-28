@@ -2,11 +2,20 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 use App\Repository\SportMatchRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=SportMatchRepository::class)
+ * 
+ * @ApiResource(
+ *     collectionOperations={"get"={"normalization_context"={"groups"="sport-match:list"}}},
+ *     itemOperations={"get"={"normalization_context"={"groups"="sport-match:item"}}},
+ *     order={"startingAt"="DESC"},
+ *     paginationEnabled=false
+ * )
  */
 class SportMatch
 {
@@ -14,51 +23,61 @@ class SportMatch
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * 
      */
+    #[Groups(['sport-match:list', 'sport-match:item'])]
     private $id;
 
     /**
      * @ORM\ManyToOne(targetEntity=Team::class, inversedBy="sportMatches")
      * @ORM\JoinColumn(nullable=false)
      */
+    #[Groups(['sport-match:list', 'sport-match:item'])]
     private $firstTeam;
 
     /**
      * @ORM\ManyToOne(targetEntity=Team::class, inversedBy="sportMatches")
      * @ORM\JoinColumn(nullable=false)
      */
+    #[Groups(['sport-match:list', 'sport-match:item'])]
     private $secondTeam;
 
     /**
      * @ORM\ManyToOne(targetEntity=Field::class, inversedBy="sportMatches")
      * @ORM\JoinColumn(nullable=false)
      */
+    #[Groups(['sport-match:list', 'sport-match:item'])]
     private $field;
 
     /**
      * @ORM\Column(type="datetime")
      */
+    #[Groups(['sport-match:list', 'sport-match:item'])]
     private $startingAt;
 
     /**
      * @ORM\ManyToOne(targetEntity=Tournament::class, inversedBy="sportMatches")
      * @ORM\JoinColumn(nullable=false)
      */
+    #[Groups(['sport-match:list', 'sport-match:item'])]
     private $tournament;
 
     /**
      * @ORM\Column(type="time")
      */
+    #[Groups(['sport-match:list', 'sport-match:item'])]
     private $duration;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
+    #[Groups(['sport-match:list', 'sport-match:item'])]
     private $firstTeamScore;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
+    #[Groups(['sport-match:list', 'sport-match:item'])]
     private $secondTeamScore;
 
     public function getId(): ?int
