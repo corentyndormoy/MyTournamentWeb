@@ -37,15 +37,15 @@ final class Version20210528172912 extends AbstractMigration
         $this->addSql('CREATE TABLE team (id INT NOT NULL, name VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE TABLE tournament (id INT NOT NULL, place_id INT NOT NULL, name VARCHAR(255) NOT NULL, sport VARCHAR(255) NOT NULL, teams_number INT NOT NULL, max_players_per_team_number INT NOT NULL, starting_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_BD5FB8D9DA6A219 ON tournament (place_id)');
-        $this->addSql('CREATE TABLE "user" (id INT NOT NULL, team_id INT DEFAULT NULL, first_name VARCHAR(255) NOT NULL, last_name VARCHAR(255) NOT NULL, mail VARCHAR(255) NOT NULL, phone VARCHAR(15) DEFAULT NULL, username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, gender VARCHAR(1) NOT NULL, player_number INT DEFAULT NULL, roles JSON NOT NULL, PRIMARY KEY(id))');
-        $this->addSql('CREATE INDEX IDX_8D93D649296CD8AE ON "user" (team_id)');
+        $this->addSql('CREATE TABLE user (id INT NOT NULL, team_id INT DEFAULT NULL, first_name VARCHAR(255) NOT NULL, last_name VARCHAR(255) NOT NULL, mail VARCHAR(255) NOT NULL, phone VARCHAR(15) DEFAULT NULL, username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, gender VARCHAR(1) NOT NULL, player_number INT DEFAULT NULL, roles JSON NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE INDEX IDX_8D93D649296CD8AE ON user (team_id)');
         $this->addSql('ALTER TABLE field ADD CONSTRAINT FK_5BF54558DA6A219 FOREIGN KEY (place_id) REFERENCES place (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE sport_match ADD CONSTRAINT FK_CE27A41C3AE0B452 FOREIGN KEY (first_team_id) REFERENCES team (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE sport_match ADD CONSTRAINT FK_CE27A41C3E2E58C3 FOREIGN KEY (second_team_id) REFERENCES team (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE sport_match ADD CONSTRAINT FK_CE27A41C443707B0 FOREIGN KEY (field_id) REFERENCES field (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE sport_match ADD CONSTRAINT FK_CE27A41C33D1A3E7 FOREIGN KEY (tournament_id) REFERENCES tournament (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE tournament ADD CONSTRAINT FK_BD5FB8D9DA6A219 FOREIGN KEY (place_id) REFERENCES place (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
-        $this->addSql('ALTER TABLE "user" ADD CONSTRAINT FK_8D93D649296CD8AE FOREIGN KEY (team_id) REFERENCES team (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
+        $this->addSql('ALTER TABLE user ADD CONSTRAINT FK_8D93D649296CD8AE FOREIGN KEY (team_id) REFERENCES team (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
     }
 
     public function down(Schema $schema): void
@@ -57,7 +57,7 @@ final class Version20210528172912 extends AbstractMigration
         $this->addSql('ALTER TABLE tournament DROP CONSTRAINT FK_BD5FB8D9DA6A219');
         $this->addSql('ALTER TABLE sport_match DROP CONSTRAINT FK_CE27A41C3AE0B452');
         $this->addSql('ALTER TABLE sport_match DROP CONSTRAINT FK_CE27A41C3E2E58C3');
-        $this->addSql('ALTER TABLE "user" DROP CONSTRAINT FK_8D93D649296CD8AE');
+        $this->addSql('ALTER TABLE user DROP CONSTRAINT FK_8D93D649296CD8AE');
         $this->addSql('ALTER TABLE sport_match DROP CONSTRAINT FK_CE27A41C33D1A3E7');
         $this->addSql('DROP SEQUENCE field_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE place_id_seq CASCADE');
@@ -70,6 +70,6 @@ final class Version20210528172912 extends AbstractMigration
         $this->addSql('DROP TABLE sport_match');
         $this->addSql('DROP TABLE team');
         $this->addSql('DROP TABLE tournament');
-        $this->addSql('DROP TABLE "user"');
+        $this->addSql('DROP TABLE user');
     }
 }
