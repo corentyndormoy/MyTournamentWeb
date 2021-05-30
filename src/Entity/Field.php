@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 use App\Repository\FieldRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -9,6 +11,21 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=FieldRepository::class)
+ * 
+ *  @Annotation (
+ *      "place"={
+ *          "name": "Place",
+ *          "type": "collection",
+ *          "entity": "places"
+ *      }
+ * )
+ * 
+ *  @ApiResource(
+ *     collectionOperations={"get"={"normalization_context"={"groups"="field:list"}}},
+ *     itemOperations={"get"={"normalization_context"={"groups"="field:item"}}},
+ *     order={"name"="DESC"},
+ *     paginationEnabled=false
+ * )
  */
 class Field
 {
@@ -17,22 +34,26 @@ class Field
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
+    #[Groups(['field:list', 'field:item'])]
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
+    #[Groups(['field:list', 'field:item'])]
     private $name;
 
     /**
      * @ORM\ManyToOne(targetEntity=Place::class, inversedBy="fields")
      * @ORM\JoinColumn(nullable=false)
      */
+    #[Groups(['field:list', 'field:item'])]
     private $place;
 
     /**
      * @ORM\OneToMany(targetEntity=SportMatch::class, mappedBy="field")
      */
+    #[Groups(['field:list', 'field:item'])]
     private $sportMatches;
 
     public function __construct()

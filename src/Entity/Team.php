@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 use App\Repository\TeamRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -9,6 +11,21 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=TeamRepository::class)
+ * 
+ *  @Annotation (
+ *      "user"={
+ *          "name": "User",
+ *          "type": "collection",
+ *          "entity": "users"
+ *      }
+ * )
+ * 
+ *  @ApiResource(
+ *     collectionOperations={"get"={"normalization_context"={"groups"="team:list"}}},
+ *     itemOperations={"get"={"normalization_context"={"groups"="team:item"}}},
+ *     order={"name"="DESC"},
+ *     paginationEnabled=false
+ * )
  */
 class Team
 {
@@ -17,21 +34,25 @@ class Team
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
+    #[Groups(['team:list', 'team:item'])]
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
+    #[Groups(['team:list', 'team:item'])]
     private $name;
 
     /**
      * @ORM\OneToMany(targetEntity=User::class, mappedBy="team")
      */
+    #[Groups(['team:list', 'team:item'])]
     private $player;
 
     /**
      * @ORM\OneToMany(targetEntity=SportMatch::class, mappedBy="firstTeam")
      */
+    #[Groups(['team:list', 'team:item'])]
     private $sportMatches;
 
     public function __construct()

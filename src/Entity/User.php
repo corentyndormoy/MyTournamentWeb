@@ -2,11 +2,20 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * 
+ *  @ApiResource(
+ *     collectionOperations={"get"={"normalization_context"={"groups"="user:list"}}},
+ *     itemOperations={"get"={"normalization_context"={"groups"="user:item"}}},
+ *     order={"firstName"="DESC"},
+ *     paginationEnabled=false
+ * )
  */
 class User
 {
@@ -15,56 +24,67 @@ class User
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
+    #[Groups(['user:list', 'user:item'])]
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
+    #[Groups(['user:list', 'user:item'])]
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
+    #[Groups(['user:list', 'user:item'])]
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
+    #[Groups(['user:list', 'user:item'])]
     private $mail;
 
     /**
      * @ORM\Column(type="string", length=15, nullable=true)
      */
+    #[Groups(['user:list', 'user:item'])]
     private $phone;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
+    #[Groups(['user:list', 'user:item'])]
     private $username;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
+    #[Groups(['user:list', 'user:item'])]
     private $password;
 
     /**
      * @ORM\Column(type="string", length=1)
      */
+    #[Groups(['user:list', 'user:item'])]
     private $gender;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
+    #[Groups(['user:list', 'user:item'])]
     private $playerNumber;
 
     /**
      * @ORM\Column(type="json")
      */
+    #[Groups(['user:list', 'user:item'])]
     private $roles = [];
 
     /**
      * @ORM\ManyToOne(targetEntity=Team::class, inversedBy="player")
      */
+    #[Groups(['user:list', 'user:item'])]
     private $team;
 
     public function getId(): ?int

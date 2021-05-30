@@ -10,6 +10,23 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=SportMatchRepository::class)
  * 
+ *  @Annotation (
+ *      "team"={
+ *          "name": "Team",
+ *          "type": "collection",
+ *          "entity": "teams"
+ *      }
+ * )
+ * 
+ *  @Annotation (
+ *      "field"={
+ *          "name": "Field",
+ *          "type": "collection",
+ *          "entity": "fields"
+ *      }
+ * )
+ *
+ * 
  * @ApiResource(
  *     collectionOperations={"get"={"normalization_context"={"groups"="sport-match:list"}}},
  *     itemOperations={"get"={"normalization_context"={"groups"="sport-match:item"}}},

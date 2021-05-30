@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 use App\Repository\PlaceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -9,6 +11,13 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=PlaceRepository::class)
+ * 
+ *  @ApiResource(
+ *     collectionOperations={"get"={"normalization_context"={"groups"="place:list"}}},
+ *     itemOperations={"get"={"normalization_context"={"groups"="place:item"}}},
+ *     order={"town"="DESC"},
+ *     paginationEnabled=false
+ * )
  */
 class Place
 {
@@ -17,36 +26,43 @@ class Place
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
+    #[Groups(['place:list', 'place:item'])]
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
+    #[Groups(['place:list', 'place:item'])]
     private $town;
 
     /**
      * @ORM\Column(type="string", length=5)
      */
+    #[Groups(['place:list', 'place:item'])]
     private $postcode;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
+    #[Groups(['place:list', 'place:item'])]
     private $street;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
+    #[Groups(['place:list', 'place:item'])]
     private $country;
 
     /**
      * @ORM\OneToMany(targetEntity=Tournament::class, mappedBy="place")
      */
+    #[Groups(['place:list', 'place:item'])]
     private $tournaments;
 
     /**
      * @ORM\OneToMany(targetEntity=Field::class, mappedBy="place", orphanRemoval=true)
      */
+    #[Groups(['place:list', 'place:item'])]
     private $fields;
 
     public function __construct()
