@@ -24,7 +24,6 @@ class User
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    #[Groups(['user:list', 'user:item'])]
     private $id;
 
     /**
