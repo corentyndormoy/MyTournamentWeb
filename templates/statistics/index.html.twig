@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes statistiques{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-xl-12 col-md-8">
+            <div class="card card-default card-shadow">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h2>Mes statistiques</h2>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">Le plus de buts en un match: 0 but</div>
+                        <div class="col-md-6">La plus haute fréquence cardiaque lors d'un match: 0 BPM</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">Moyenne de but par match: 0 but</div>
+                        <div class="col-md-6">Moyenne de la fréquence cardiaque: 0 BPM</div>
+                    </div>
+                    <div class="row">         
+                        <div class="col-md-6">
+                            <div style="width:500px;height:100px;border:1px solid #000;"></div>
+                        </div>   
+                        <div class="col-md-6">
+                            <div style="width:500px;height:100px;border:1px solid #000;"></div>
+                        </div>
+                    </div>
+                    <div class="row mt-6">
+                        <div class="col-md-6"><i>Schéma de la température corporelle lors le dernier match</i></div>
+                        <div class="col-md-6"><i>Schéma de la candence cardiaque lors le dernier match</i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
